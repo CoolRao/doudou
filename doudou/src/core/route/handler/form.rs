@@ -12,3 +12,9 @@ pub struct MsgForm {
     pub  content: String,
     pub contact: String,
 }
+
+#[derive(Deserialize)]
+pub struct PageForm {
+    pub  page: i64,
+    pub  size: i64,
+}

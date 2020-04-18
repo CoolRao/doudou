@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>DouDou</title>
+    <head>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link type="text/css" rel="styleSheet"  href="./css/index.css" />
+    </head>
 </head>
 <body>
-    <h1>豆豆</h1>
+<p class="title" id="content"></p>
+<button id="button" onclick="getIndex()">点击</button>
 </body>
 </html>
+<script>
+    function getIndex() {
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/index',
+                data: JSON.stringify({page: 1, size: 2}),          //> 把json对象转换为json字符串形式传送
+                contentType: "application/json; charset=utf-8",    //> 这里和headers中Content-Type相同作用
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                success: function (data) {
+                    $("#content").text(data)
+                    console.log(data);
+                }
+            });
+        });
+    }
+</script>
