@@ -1,9 +1,8 @@
-use actix_web::{web,HttpResponse};
+use actix_web::{web, HttpResponse};
+
 pub mod handler;
+
 pub fn config(cfg: &mut web::ServiceConfig) {
-    cfg.service(
-        web::resource("/app")
-            .route(web::get().to(|| HttpResponse::Ok().body("app")))
-            .route(web::head().to(|| HttpResponse::MethodNotAllowed()))
-    ).route("/login",web::get().to(handler::hello_world));
+    cfg.service(web::resource("/message").route(web::post().to(handler::message_handler)))
+        .service(web::resource("/login").route(web::post().to(handler::login_handler)));
 }
