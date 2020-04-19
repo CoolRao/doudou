@@ -5,15 +5,46 @@
     <title>DouDou</title>
     <head>
         <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-        <link type="text/css" rel="styleSheet"  href="./css/index.css" />
+        <link type="text/css" rel="styleSheet" href="./css/index.css"/>
     </head>
 </head>
 <body>
-<p class="title" id="content"></p>
-<button id="button" onclick="getIndex()">点击</button>
+<div class="container">
+    <div class="search">
+        <form onsubmit="searchByKeyWord()">
+            <input placeholder="输入搜索内容" name="keyword" id="searchIt"/>
+            <button type="submit">搜索</button>
+        </form>
+
+    </div>
+    <p class="title" id="content">
+    </p>
+    <button id="button" onclick="getIndex()">点击</button>
+</div>
 </body>
 </html>
 <script>
+
+    function searchByKeyWord() {
+        let keyWord = $("#searchIt").val();
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/searchKeyWord',
+                data: JSON.stringify({kwyWord: keyWord, page: 1, size: 2}),          //> 把json对象转换为json字符串形式传送
+                contentType: "application/json; charset=utf-8",    //> 这里和headers中Content-Type相同作用
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                success: function (data) {
+                    $("#content").text(data)
+                    console.log(data);
+                }
+            });
+        });
+    }
+
+
     function getIndex() {
         $(function () {
             $.ajax({
@@ -31,4 +62,5 @@
             });
         });
     }
+
 </script>
