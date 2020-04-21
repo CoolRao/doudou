@@ -1,4 +1,4 @@
-use actix_web::{web, Result, HttpRequest, HttpResponse};
+use actix_web::{web, Result};
 
 mod form;
 
@@ -16,7 +16,7 @@ pub async fn message_handler(msg: web::Json<MsgForm>) -> Result<String> {
 }
 
 pub async fn web_index(msg: web::Json<PageForm>) -> Result<String> {
-    Ok(format!("doudou index"))
+    Ok(format!("doudou index {}",msg.page))
 }
 
 
