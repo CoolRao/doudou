@@ -1,0 +1,5 @@
+{
+  "mongodb_url": "mongodb:://",
+  "debug": true,
+  "host": "0.0.0.0:8080"
+}
