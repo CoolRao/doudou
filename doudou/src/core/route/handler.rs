@@ -8,6 +8,7 @@ use form::{LoginForm, MsgForm, PageForm};
 // login
 pub async fn login_handler(info: web::Json<LoginForm>) -> Result<String> {
     Ok(format!("Welcome {}!", info.username))
+
 }
 
 // message
