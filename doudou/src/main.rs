@@ -36,6 +36,18 @@ fn init_logger() {
                 Local::now().format("%Y-%m-%d %H:%M:%S"),
                 record.level(),
                 record.module_path().unwrap_or("<unnamed>"),
+
+
+
+
+
+
+
+
+
+
+
+                
                 &record.args()
             )
         })
